@@ -10,7 +10,7 @@ namespace MouseFix {
 			[HarmonyPrefix]
 			public static bool Prefix(bool isLocked) {
 				if (!GameMode.Get().CompareWithCurrentMode(gameMode.UI) && GameScript.Get() && GameScript.Get().CurrentSceneType != SceneType.Menu)
-					return true;
+					return false;
 
 				Screen.lockCursor = false;
 				if (isLocked) {
@@ -18,7 +18,7 @@ namespace MouseFix {
 					return false;
 				}
 				Cursor.lockState = 0;
-				return false;
+				return true;
 			}
 		}
 	}
