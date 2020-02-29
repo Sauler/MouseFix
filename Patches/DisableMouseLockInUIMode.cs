@@ -9,15 +9,20 @@ namespace MouseFix {
 		private class DisableMouseLockInUIMode {
 			[HarmonyPrefix]
 			public static bool Prefix(bool isLocked) {
-				if (!GameMode.Get().CompareWithCurrentMode(gameMode.UI) && GameScript.Get() && GameScript.Get().CurrentSceneType != SceneType.Menu)
-					return false;
-
-				Screen.lockCursor = false;
-				if (isLocked) {
-					Cursor.visible = false;
+				var gameScript = GameScript.Get();
+				if (GameMode.Get().CompareWithCurrentMode(gameMode.UI) ||
+				    gameScript != null && gameScript.CurrentSceneType == SceneType.Menu ||
+				    gameScript.CurrentSceneType == SceneType.Showroom ||
+				    gameScript.CurrentSceneType == SceneType.Auction) {
+					Screen.lockCursor = false;
+					if (isLocked) {
+						Cursor.visible = false;
+						return false;
+					}
+					Cursor.lockState = 0;
 					return false;
 				}
-				Cursor.lockState = 0;
+
 				return true;
 			}
 		}
