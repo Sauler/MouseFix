@@ -20,7 +20,7 @@ namespace MouseFix {
 				Name = "MouseFix",
 				Description = "Mouse improvements.",
 				Author = "Rafał Babiarz",
-				Version = "1.0.0"
+				Version = "1.0.1"
 			};
 		}
 	}
