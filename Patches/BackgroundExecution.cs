@@ -1,9 +1,10 @@
-﻿using Harmony;
+﻿using System.Collections;
+using Harmony;
 using UnityEngine;
 
 namespace MouseFix {
 	public partial class Main {
-		[HarmonyPatch(typeof(GameInit))]
+		[HarmonyPatch(typeof(IntroPlayer))]
 		[HarmonyPatch("Awake")]
 		private class BackgroundExecution {
 			[HarmonyPrefix]
