@@ -1,16 +1,12 @@
-﻿using System.Collections;
-using Harmony;
+﻿using HarmonyLib;
 using UnityEngine;
 
-namespace MouseFix {
-	public partial class Main {
-		[HarmonyPatch(typeof(IntroPlayer))]
-		[HarmonyPatch("Awake")]
-		private class BackgroundExecution {
-			[HarmonyPrefix]
-			public static void Prefix() {
-				Application.runInBackground = true;
-			} 
+namespace MouseFix.Patches {
+	[HarmonyPatch(typeof(IntroPlayer))]
+	[HarmonyPatch("Awake")]
+	internal class BackgroundExecution {
+		private static void Prefix() {
+			Application.runInBackground = true;
 		}
 	}
 }
